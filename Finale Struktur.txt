@@ -1,0 +1,75 @@
+Finale Struktur:
+
+app_main.R:
+- calls ui.R
+- calls server.R
+
+ui.R:
+- Tabset to switch between CURRENT and PREVIOUS Cards
+- MainPanel of a Card:
+	-TEXT of question
+	-OPTIONALS:
+		-> Code Chunk (```Code```)
+		-> Image (using
+	-INPUT:
+		- UI Type of input is defined either by server.r and/or quiztype.r for ui.r?
+	-Confirm Button to check if INPUT == SOLUTION (Using Minimal Button and Confirmation Dialog from ShinyWidgets)
+	-Next Button that is locked until INPUT == SOLUTION was TRUE once with Confirmation Button (Using Stretch Button from ShinyWidgets)
+
+-SideBar of a Card:
+	-Tip-Button (Using Minimal Button from ShinyWidgets)
+	-Tip-Text (only visible if Tip-Button was clicked using SweetAlert2 from ShinyWidgets to show Tip the first time)
+	-Small Info Text that says that a bigger tip is given upon failing the question for the first time in this SideBar
+	-Second Tip (Only visible if confirmation button was pressed and the result was wrong, should also be shown one using SweetAlert 2 from ShinyWidgets)
+
+-Outside of Card:
+	-ProgressBar(Status Update from ShinyWidgets, Total = Total Questions, Current = Questions Solved)
+
+server.R
+- Loader for each card/question
+	-> Calls a csv_reader.R in which the logic for getting the pages info is defined
+- Reactive Val for current card
+- Confirm Button and Input Comparison Logic
+- Lock Next Button until correct result (solution == input after confirmation) came up at least once
+- General Logic of Next Button
+- Showing only previous and current card in tabset
+- General Logic of Tip Button
+- Logic for showing second Tip when failing once (solution != input after confirmation)
+- Sidebar Logic
+- Card Logic
+- Tabset Logic
+- ProgressBar Logic
+- access quiztype.R if needed (?)
+
+quiztype.R
+- Defines whether quiz has as UI:
+	-Radio Buttons (Shinywidgets Awesome Radio Buttons)
+	-Checkbox Group Buttons (Shinywidgets Awesome Checkbox Group)
+	-Text Input (Base Shiny)
+	-Numeric Input (Base Shiny)
+- Should pass the results in a universal manner at the end so server logic is generally applicable
+- Might make it harder to code? Maybe dont use this quiztype extra file and instead define logic as needed in ui.R and server.R?
+
+csv_reader.R
+-Should read CSV and turn it into card_structure
+-Columns in CSV (can be used per page, ":O" for optional)
+	-main_text (TEXT)
+	-type (quiztype.R? Type of input and its result)
+	-choice_1:O (Choice 1 for Radio Button or Checkbox if they are the type)
+	-choice_2:O (Choice 2...)
+	-choice_3:O (Choice 3...)	
+	-choice_4:O (Choice 4...)
+	-solution (solution to check against)
+	-start_tip:O (Tip given if Tip Button pressed)
+	-wrong_tip (Tip given upon wrong answer confirmation)
+	-question_image:O (Optional Image-Link for Image to be added after Text)
+	-question_codechunk:O (Optional R-Code to display in a Chunk after Text)
+
+
+Ästhetik:
+
+-> Goethe-Style (Kai hats zugeschickt)
+
+-> Blau im Fokus
+
+
