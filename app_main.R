@@ -1,6 +1,7 @@
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 library(shiny)
 library(shinyjs)
+library(shinyWidgets)
 
 #install.packages("shiny")
 #install.packages("shinyWidgets")  # For enhanced UI elements

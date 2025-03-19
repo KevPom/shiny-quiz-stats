@@ -1,4 +1,4 @@
-main_text;type;choice_1;choice_2;choice_3;choice_4;solution;start_tip;wrong_tip;question_imagelink;question_codechunk
+main_text;type;choice_1;choice_2;choice_3;choice_4;solution;start_tip;wrong_tip;question_image;question_codechunk
 1+1?;mc;1;2;3;4;2;It's just addition;1+1 = 2;;
 1+1?;result;;;;;2;It's just addition;1+1 = 2;;
 1+1 in german?;text;;;;;zwei;Eins,…,drei…;"Starts with ""zw""";;
